@@ -7,10 +7,11 @@
 int main(int argc, char** argv) {
 	VerilatedContext* contextp = new VerilatedContext;
     contextp->commandArgs(argc, argv);
+    contextp->traceEverOn(true);
 
     Vtest top;
 
-    while (true) {
+    while (contextp->time() < 12) {
         top.a = rand() & 1;
         top.b = rand() & 1;
 
@@ -20,6 +21,11 @@ int main(int argc, char** argv) {
                top.a, top.b, top.f);
 
         assert(top.f == (top.a ^ top.b));
+        contextp->timeInc(1);
     }
+
+    top.eval();
+    top.final();
+    return 0;
 }
 

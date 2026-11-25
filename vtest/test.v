@@ -7,7 +7,7 @@ module test(
 
   initial begin
     if ($test$plusargs("trace")) begin
-      $dumpfile("wave.vcd");
+      $dumpfile("waveform.fst");
       $dumpvars(0, test);
     end
   end

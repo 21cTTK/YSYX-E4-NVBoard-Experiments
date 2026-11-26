@@ -1,4 +1,4 @@
-module shreg(
+module shreg #(parameter [7:0] INIT = 8'hxx)(
     input [7:0] oprd,
     input [2:0] op,
     input clk,
@@ -19,6 +19,7 @@ module shreg(
     end
 
     initial begin
+        result = INIT;
         if ($test$plusargs("trace")) begin
             $dumpfile("waveform.fst");
             $dumpvars(0, shreg);
